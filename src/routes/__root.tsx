@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { brand } from "@/data/packages";
 
 function NotFoundComponent() {
   return (
@@ -81,16 +82,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Cacce al tesoro per feste di bambini" },
+      { name: "description", content: "Cacce al tesoro in PDF pronte per compleanni ed eventi per bambini." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;800&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -106,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="it">
       <head>
         <HeadContent />
       </head>
@@ -124,7 +127,29 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <header className="sticky top-0 z-10 border-b-2 border-border bg-background/95 backdrop-blur">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
+          <Link to="/" className="flex items-center gap-2">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-xl">{brand.logo}</span>
+            <span className="font-display text-xl font-extrabold text-primary">{brand.name}</span>
+          </Link>
+          <nav className="flex gap-4 text-sm font-bold">
+            <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: "text-secondary" }}>Home</Link>
+            <Link to="/catalogo" activeProps={{ className: "text-secondary" }}>Catalogo</Link>
+          </nav>
+        </div>
+      </header>
+      <main className="mx-auto max-w-5xl px-4 py-8">
+        <Outlet />
+      </main>
+      <footer className="mt-12 bg-secondary text-secondary-foreground">
+        <div className="mx-auto flex max-w-5xl flex-wrap gap-4 px-4 py-6 text-sm font-semibold">
+          <span>© {brand.name}</span>
+          <Link to="/privacy">Privacy</Link>
+          <Link to="/termini">Termini</Link>
+          <Link to="/contatti">Contatti</Link>
+        </div>
+      </footer>
     </QueryClientProvider>
   );
 }

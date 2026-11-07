@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CatalogoRouteImport } from './routes/catalogo'
+import { Route as ConfermaRouteImport } from './routes/conferma'
+import { Route as ConfiguratoreRouteImport } from './routes/configuratore'
+import { Route as ContattiRouteImport } from './routes/contatti'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TerminiRouteImport } from './routes/termini'
+import { Route as PacchettiSlugRouteImport } from './routes/pacchetti.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatalogoRoute = CatalogoRouteImport.update({
+  id: '/catalogo',
+  path: '/catalogo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfermaRoute = ConfermaRouteImport.update({
+  id: '/conferma',
+  path: '/conferma',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguratoreRoute = ConfiguratoreRouteImport.update({
+  id: '/configuratore',
+  path: '/configuratore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContattiRoute = ContattiRouteImport.update({
+  id: '/contatti',
+  path: '/contatti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerminiRoute = TerminiRouteImport.update({
+  id: '/termini',
+  path: '/termini',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PacchettiSlugRoute = PacchettiSlugRouteImport.update({
+  id: '/pacchetti/$slug',
+  path: '/pacchetti/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catalogo': typeof CatalogoRoute
+  '/conferma': typeof ConfermaRoute
+  '/configuratore': typeof ConfiguratoreRoute
+  '/contatti': typeof ContattiRoute
+  '/privacy': typeof PrivacyRoute
+  '/termini': typeof TerminiRoute
+  '/pacchetti/$slug': typeof PacchettiSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catalogo': typeof CatalogoRoute
+  '/conferma': typeof ConfermaRoute
+  '/configuratore': typeof ConfiguratoreRoute
+  '/contatti': typeof ContattiRoute
+  '/privacy': typeof PrivacyRoute
+  '/termini': typeof TerminiRoute
+  '/pacchetti/$slug': typeof PacchettiSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/catalogo': typeof CatalogoRoute
+  '/conferma': typeof ConfermaRoute
+  '/configuratore': typeof ConfiguratoreRoute
+  '/contatti': typeof ContattiRoute
+  '/privacy': typeof PrivacyRoute
+  '/termini': typeof TerminiRoute
+  '/pacchetti/$slug': typeof PacchettiSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/catalogo'
+    | '/conferma'
+    | '/configuratore'
+    | '/contatti'
+    | '/privacy'
+    | '/termini'
+    | '/pacchetti/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/catalogo'
+    | '/conferma'
+    | '/configuratore'
+    | '/contatti'
+    | '/privacy'
+    | '/termini'
+    | '/pacchetti/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/catalogo'
+    | '/conferma'
+    | '/configuratore'
+    | '/contatti'
+    | '/privacy'
+    | '/termini'
+    | '/pacchetti/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CatalogoRoute: typeof CatalogoRoute
+  ConfermaRoute: typeof ConfermaRoute
+  ConfiguratoreRoute: typeof ConfiguratoreRoute
+  ContattiRoute: typeof ContattiRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TerminiRoute: typeof TerminiRoute
+  PacchettiSlugRoute: typeof PacchettiSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalogo': {
+      id: '/catalogo'
+      path: '/catalogo'
+      fullPath: '/catalogo'
+      preLoaderRoute: typeof CatalogoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conferma': {
+      id: '/conferma'
+      path: '/conferma'
+      fullPath: '/conferma'
+      preLoaderRoute: typeof ConfermaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuratore': {
+      id: '/configuratore'
+      path: '/configuratore'
+      fullPath: '/configuratore'
+      preLoaderRoute: typeof ConfiguratoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contatti': {
+      id: '/contatti'
+      path: '/contatti'
+      fullPath: '/contatti'
+      preLoaderRoute: typeof ContattiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termini': {
+      id: '/termini'
+      path: '/termini'
+      fullPath: '/termini'
+      preLoaderRoute: typeof TerminiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pacchetti/$slug': {
+      id: '/pacchetti/$slug'
+      path: '/pacchetti/$slug'
+      fullPath: '/pacchetti/$slug'
+      preLoaderRoute: typeof PacchettiSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CatalogoRoute: CatalogoRoute,
+  ConfermaRoute: ConfermaRoute,
+  ConfiguratoreRoute: ConfiguratoreRoute,
+  ContattiRoute: ContattiRoute,
+  PrivacyRoute: PrivacyRoute,
+  TerminiRoute: TerminiRoute,
+  PacchettiSlugRoute: PacchettiSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
