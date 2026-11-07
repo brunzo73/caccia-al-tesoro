@@ -6,8 +6,8 @@ type Search = { pacchetto?: string; livello?: string };
 
 export const Route = createFileRoute("/configuratore")({
   validateSearch: (s: Record<string, unknown>): Search => ({
-    pacchetto: typeof s.pacchetto === "string" ? s.pacchetto : undefined,
-    livello: typeof s.livello === "string" ? s.livello : undefined,
+    pacchetto: typeof s["pacchetto"] === "string" ? s["pacchetto"] : undefined,
+    livello: typeof s["livello"] === "string" ? s["livello"] : undefined,
   }),
   head: () => ({
     meta: [
