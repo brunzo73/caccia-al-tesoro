@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { durations, getPackage, getTier, locations, packages, tiers } from "@/data/packages";
 
-type Search = { pacchetto?: string; livello?: string };
+type Search = { pacchetto?: string | undefined; livello?: string | undefined };
 
 export const Route = createFileRoute("/configuratore")({
   validateSearch: (s: Record<string, unknown>): Search => ({
