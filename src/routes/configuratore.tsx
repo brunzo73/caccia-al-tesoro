@@ -25,8 +25,8 @@ const TOTAL = 6;
 function Configuratore() {
   const search = Route.useSearch();
   const navigate = useNavigate();
-  const pkg = getPackage(search.pacchetto ?? "") ?? packages[0];
-  const tier = getTier(search.livello ?? "") ?? tiers[1];
+  const pkg = getPackage(search.pacchetto ?? "") ?? packages[0]!;
+  const tier = getTier(search.livello ?? "") ?? tiers[1]!;
   const [step, setStep] = useState(1);
   const [f, setF] = useState({
     nome: "", eta: "", data: "", bambini: "", squadre: "", luogo: "", durata: "", note: "",
