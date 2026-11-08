@@ -57,7 +57,26 @@ export type Package = {
   plot: string;
 };
 
+export const ageGroups = [
+  { label: "3-4 anni", value: "3-4", emoji: "🐣" },
+  { label: "5-7 anni", value: "5-7", emoji: "🌟" },
+  { label: "8-10 anni", value: "8-10", emoji: "🔍" },
+  { label: "11+ anni", value: "11+", emoji: "🚀" },
+];
+
 export const packages: Package[] = [
+  {
+    slug: "animali-del-bosco",
+    title: "Animali del bosco",
+    ageRange: "3-4",
+    location: "Casa",
+    theme: "Animali",
+    emoji: "🐸",
+    short: "Piccoli esploratori alla ricerca degli amici del bosco.",
+    description:
+      "Avventura semplicissima con indizi illustrati e colorati, pensata per i più piccoli che ancora non leggono. Ogni indizio mostra un animale da trovare.",
+    plot: "Gli animaletti del bosco si sono nascosti in casa! Aiuta la volpina Lilli a ritrovarli tutti prima della festa.",
+  },
   {
     slug: "pirati-in-giardino",
     title: "Pirati in giardino",
@@ -69,6 +88,30 @@ export const packages: Package[] = [
     description:
       "Caccia al tesoro piratesca pensata per il giardino: indizi nascosti, enigmi semplici e un forziere finale da trovare.",
     plot: "Il Capitano Barbabuffa ha seppellito il suo tesoro in giardino. Solo la ciurma più coraggiosa potrà ritrovarlo!",
+  },
+  {
+    slug: "magia-e-fate-in-casa",
+    title: "Magia e fate in casa",
+    ageRange: "5-7",
+    location: "Casa",
+    theme: "Magia",
+    emoji: "🧚",
+    short: "Un incantesimo da spezzare stanza dopo stanza.",
+    description:
+      "Avventura incantata da giocare in casa, con indizi illustrati adatti anche a chi non sa ancora leggere.",
+    plot: "La Fata Lucina ha perso la sua bacchetta magica. Aiutiamola a ritrovarla prima del tramonto!",
+  },
+  {
+    slug: "missione-spia-in-asilo",
+    title: "Missione spia in asilo",
+    ageRange: "5-7",
+    location: "Asilo",
+    theme: "Spie",
+    emoji: "🕶️",
+    short: "Agenti segreti in azione per una missione speciale.",
+    description:
+      "Missione per piccoli agenti segreti con messaggi in codice e prove di squadra, ideale per l'asilo.",
+    plot: "Un messaggio top secret è stato diviso in pezzi. Gli agenti devono ricomporlo per salvare la festa!",
   },
   {
     slug: "detective-al-parco",
@@ -83,28 +126,40 @@ export const packages: Package[] = [
     plot: "La torta della festa è sparita! I detective devono seguire le tracce e scoprire chi l'ha nascosta.",
   },
   {
-    slug: "magia-e-fate-in-casa",
-    title: "Magia e fate in casa",
-    ageRange: "4-6",
+    slug: "escape-room-casa",
+    title: "Escape Room in casa",
+    ageRange: "8-10",
     location: "Casa",
-    theme: "Magia",
-    emoji: "🧚",
-    short: "Un incantesimo da spezzare stanza dopo stanza.",
+    theme: "Escape Room",
+    emoji: "🔐",
+    short: "Enigmi e lucchetti da risolvere contro il tempo.",
     description:
-      "Avventura incantata da giocare in casa, con indizi illustrati adatti anche a chi non sa ancora leggere.",
-    plot: "La Fata Lucina ha perso la sua bacchetta magica. Aiutiamola a ritrovarla prima del tramonto!",
+      "Una vera escape room casalinga con enigmi a catena, codici e lucchetti da aprire. Perfetta per bambini che amano le sfide.",
+    plot: "Una strana busta è arrivata a casa: contiene una serie di enigmi da risolvere entro 45 minuti. Riuscirete a farcela?",
   },
   {
-    slug: "missione-spia-in-asilo",
-    title: "Missione spia in asilo",
-    ageRange: "6-8",
-    location: "Asilo",
-    theme: "Spie",
-    emoji: "🕶️",
-    short: "Agenti segreti in azione per una missione speciale.",
+    slug: "avventura-fantasy",
+    title: "Avventura fantasy",
+    ageRange: "11+",
+    location: "Parco",
+    theme: "Fantasy",
+    emoji: "⚔️",
+    short: "Un'epica quest tra draghi, magie e prove di coraggio.",
     description:
-      "Missione per piccoli agenti segreti con messaggi in codice e prove di squadra, ideale per l'asilo.",
-    plot: "Un messaggio top secret è stato diviso in pezzi. Gli agenti devono ricomporlo per salvare la festa!",
+      "Avventura fantasy per ragazzi con indizi narrativi complessi, prove fisiche e mentali, e una storia a bivi. Consigliata per 6+ partecipanti.",
+    plot: "Il regno di Eldoria è minacciato da un drago oscuro. Solo il gruppo che supererà le prove dei Saggi potrà forgiare la spada del destino.",
+  },
+  {
+    slug: "mystery-party",
+    title: "Mystery Party",
+    ageRange: "11+",
+    location: "Casa",
+    theme: "Giallo",
+    emoji: "🔎",
+    short: "Chi è il colpevole? Un vero gioco di ruolo investigativo.",
+    description:
+      "Un giallo interattivo dove ogni partecipante ha un ruolo e un alibi. Con indizi, false piste e un colpo di scena finale.",
+    plot: "Durante la festa qualcuno ha rubato il regalo del festeggiato. Ogni invitato è sospettato. Chi ha il movente?",
   },
 ];
 
