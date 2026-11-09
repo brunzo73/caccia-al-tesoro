@@ -49,12 +49,15 @@ export type Package = {
   slug: string;
   title: string;
   ageRange: string;
+  location: string;
   theme: string;
   emoji: string;
   short: string;
   description: string;
   plot: string;
 };
+
+export const locations = ["Casa", "Giardino", "Parco", "Asilo"];
 
 export const ageGroups = [
   { label: "3-4 anni", value: "3-4", emoji: "🐣" },
