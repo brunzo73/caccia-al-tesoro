@@ -15,14 +15,13 @@ export const Route = createFileRoute("/catalogo")({
   component: Catalogo,
 });
 
-const uniq = (k: "location" | "theme") => [...new Set(packages.map((p) => p[k]))];
+const uniq = (k: "theme") => [...new Set(packages.map((p) => p[k]))];
 
 function Catalogo() {
   const [age, setAge] = useState("");
-  const [loc, setLoc] = useState("");
   const [theme, setTheme] = useState("");
   const list = packages.filter(
-    (p) => (!age || p.ageRange === age) && (!loc || p.location === loc) && (!theme || p.theme === theme),
+    (p) => (!age || p.ageRange === age) && (!theme || p.theme === theme),
   );
 
   return (
@@ -52,20 +51,15 @@ function Catalogo() {
         </div>
       </div>
 
-      {/* Filtri luogo e tema */}
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        {[
-          { label: "Luogo", v: loc, set: setLoc, opts: uniq("location") },
-          { label: "Tema", v: theme, set: setTheme, opts: uniq("theme") },
-        ].map((f) => (
-          <label key={f.label} className="text-sm font-bold">
-            {f.label}
-            <select className="field mt-1" value={f.v} onChange={(e) => f.set(e.target.value)}>
-              <option value="">Tutti</option>
-              {f.opts.map((o) => <option key={o} value={o}>{o}</option>)}
-            </select>
-          </label>
-        ))}
+      {/* Filtro tema */}
+      <div className="mt-5">
+        <label className="text-sm font-bold">
+          Tema
+          <select className="field mt-1" value={theme} onChange={(e) => setTheme(e.target.value)}>
+            <option value="">Tutti i temi</option>
+            {uniq("theme").map((o) => <option key={o} value={o}>{o}</option>)}
+          </select>
+        </label>
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
