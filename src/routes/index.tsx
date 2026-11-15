@@ -27,7 +27,7 @@ const pains = [
   },
   {
     e: "💸",
-    t: "Il salasso dell'animatore",
+    t: "Evitare i costi per l'animazione",
     d: "150-250 € per due ore di animazione, con la solita cassa bluetooth e i soliti giochi. E il dubbio che i bambini non si lascino coinvolgere.",
   },
   {
@@ -114,7 +114,7 @@ function Index() {
             <h1 className="text-balance text-4xl font-extrabold sm:text-5xl">
               Organizza una caccia al tesoro memorabile{" "}
               <span className="text-primary">in 15 minuti</span>, senza spostare un mobile e senza
-              spendere 200 € di animatore
+              spendere nulla per l'animazione
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground lg:mx-0">
               Kit completi in PDF pronti all'uso, divisi per età (3-11+ anni), sia per la casa che
