@@ -449,7 +449,7 @@ function Photo({
         src={src}
         alt={caption}
         loading="lazy"
-        className="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl"
+        className="pop aspect-[4/3] w-full rounded-3xl object-cover"
       />
     );
   }

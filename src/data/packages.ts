@@ -260,7 +260,7 @@ export const reviews: Review[] = [];
 // un'illustrazione al posto della foto.
 
 export const photos: Record<"stress" | "gioia" | "passo1" | "passo2" | "passo3", string | null> = {
-  stress: null, // genitore stanco davanti al computer di sera, fogli sparsi
+  stress: "/images/foto/stress.jpg", // illustrazione: genitore travolto dal caos a tarda notte
   gioia: null, // 3-4 bambini che ridono guardando un indizio sul pavimento
   passo1: null, // download su smartphone o laptop
   passo2: null, // mani che ritagliano le carte e compilano il diploma
