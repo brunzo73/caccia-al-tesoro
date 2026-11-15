@@ -364,7 +364,7 @@ function Band({
   className?: string;
 }) {
   return (
-    <section id={id} className={`scroll-mt-4 px-4 py-14 sm:py-20 ${tones[tone]} ${className}`}>
+    <section id={id} className={`scroll-mt-20 px-4 py-14 sm:py-20 ${tones[tone]} ${className}`}>
       <div className="mx-auto max-w-5xl">{children}</div>
     </section>
   );

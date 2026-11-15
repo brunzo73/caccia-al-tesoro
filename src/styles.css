@@ -35,26 +35,27 @@
 }
 
 :root {
+  /* MissioneFesta — palette "Festa Pop": fucsia + giallo + turchese su crema */
   --radius: 1.25rem;
-  --background: oklch(0.985 0.012 85);
-  --foreground: oklch(0.28 0.04 240);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.28 0.04 240);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.28 0.04 240);
-  --primary: oklch(0.64 0.19 45);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.72 0.12 190);
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.95 0.02 85);
-  --muted-foreground: oklch(0.5 0.03 240);
-  --accent: oklch(0.93 0.06 190);
-  --accent-foreground: oklch(0.35 0.08 200);
+  --background: #fffbea; /* crema */
+  --foreground: #1b1b3a; /* blu notte */
+  --card: #ffffff;
+  --card-foreground: #1b1b3a;
+  --popover: #ffffff;
+  --popover-foreground: #1b1b3a;
+  --primary: #e6007e; /* fucsia — bottoni e accenti */
+  --primary-foreground: #ffffff;
+  --secondary: #00b8d9; /* turchese — bande e supporto */
+  --secondary-foreground: #1b1b3a;
+  --muted: #fbf0c9; /* giallo pallido — bande alternate */
+  --muted-foreground: #585670;
+  --accent: #ffefa8; /* giallo chiaro — pill e sfondi */
+  --accent-foreground: #b00063; /* fucsia scuro — testo accento */
   --destructive: oklch(0.6 0.22 27);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.03 80);
-  --input: oklch(0.9 0.03 80);
-  --ring: oklch(0.72 0.12 190);
+  --destructive-foreground: #ffffff;
+  --border: #ece3d0;
+  --input: #ece3d0;
+  --ring: #e6007e;
 }
 
 @layer base {

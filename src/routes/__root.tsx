@@ -130,7 +130,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <header className="px-4 py-4">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/85 px-4 py-3 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl justify-center sm:justify-start">
           <Link to="/" className="flex items-center gap-2">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-xl">

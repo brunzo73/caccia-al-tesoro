@@ -1,9 +1,9 @@
 // Contenuti della landing: unico punto da modificare per testi, prezzi e immagini.
 
-// Nome provvisorio del brand: cambiando questa riga si aggiorna tutto il sito.
+// Nome del brand: cambiando questa riga si aggiorna tutto il sito.
 export const brand = {
-  name: "Facciamo Festa",
-  logo: "🎉", // sostituisci con un URL immagine o un componente logo
+  name: "MissioneFesta",
+  logo: "🎉", // sostituisci con l'URL del logo quando è pronto
 };
 
 export type Place = "Casa" | "All'aperto";
