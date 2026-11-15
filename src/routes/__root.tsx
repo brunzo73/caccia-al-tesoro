@@ -132,13 +132,13 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background/90 px-4 py-2.5 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background/90 px-4 py-2 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-3">
           <Link to="/" className="flex shrink-0 items-center" aria-label={`${brand.name} — home`}>
             <img
               src="/images/logo-missionefesta.png"
               alt={brand.name}
-              className="h-9 w-auto sm:h-10"
+              className="h-12 w-auto sm:h-14"
             />
           </Link>
           <nav className="hidden items-center gap-7 text-sm font-extrabold md:flex">
