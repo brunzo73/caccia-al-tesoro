@@ -261,7 +261,7 @@ export const reviews: Review[] = [];
 
 export const photos: Record<"stress" | "gioia" | "passo1" | "passo2" | "passo3", string | null> = {
   stress: "/images/foto/stress.jpg", // illustrazione: genitore travolto dal caos a tarda notte
-  gioia: null, // 3-4 bambini che ridono guardando un indizio sul pavimento
+  gioia: "/images/foto/gioia.jpg", // genitore rilassato in poltrona, bambini in festa sullo sfondo
   passo1: "/images/foto/passo1.jpg", // scarica il kit: PDF che arriva sul telefono
   passo2: "/images/foto/passo2.jpg", // stampa e ritaglia: forbici, stampante, diploma
   passo3: "/images/foto/passo3.jpg", // nascondi gli indizi e parti: bambini alla caccia
