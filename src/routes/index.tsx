@@ -165,7 +165,7 @@ function Index() {
       </Band>
 
       {/* 3. LA SOLUZIONE IN 3 PASSI */}
-      <Band>
+      <Band id="come-funziona">
         <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <Heading kicker="Come funziona" align="left">
@@ -214,7 +214,7 @@ function Index() {
       </Band>
 
       {/* 4. ANTEPRIMA */}
-      <Band tone="warm">
+      <Band tone="warm" id="cosa-ricevi">
         <Heading kicker="Pagine vere, dai nostri kit">Cosa c'è dentro ogni kit</Heading>
         <ul className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {contents.map((c) => (
@@ -296,7 +296,7 @@ function Index() {
       </Band>
 
       {/* 7. FAQ */}
-      <Band>
+      <Band id="faq">
         <div className="mx-auto max-w-3xl">
           <Heading kicker="Domande frequenti">Tutto quello che ti serve sapere</Heading>
           <div className="mt-8 space-y-3">

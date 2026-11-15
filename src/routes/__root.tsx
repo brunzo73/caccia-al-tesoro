@@ -102,6 +102,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/images/icon-missionefesta.png", type: "image/png", sizes: "512x512" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -130,15 +132,33 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/85 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl justify-center sm:justify-start">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-xl">
-              {brand.logo}
-            </span>
-            <span className="font-display text-xl font-extrabold text-foreground">
-              {brand.name}
-            </span>
+      <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background/90 px-4 py-2.5 backdrop-blur-md">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3">
+          <Link to="/" className="flex shrink-0 items-center" aria-label={`${brand.name} — home`}>
+            <img
+              src="/images/logo-missionefesta.png"
+              alt={brand.name}
+              className="h-9 w-auto sm:h-10"
+            />
+          </Link>
+          <nav className="hidden items-center gap-7 text-sm font-extrabold md:flex">
+            <Link to="/" hash="come-funziona" className="transition-colors hover:text-primary">
+              Come funziona
+            </Link>
+            <Link to="/" hash="cosa-ricevi" className="transition-colors hover:text-primary">
+              Cosa ricevi
+            </Link>
+            <Link to="/" hash="faq" className="transition-colors hover:text-primary">
+              Domande
+            </Link>
+          </nav>
+          <Link
+            to="/"
+            hash="pacchetti"
+            className="btn shrink-0 bg-primary px-4 py-2 text-sm text-primary-foreground"
+          >
+            <span className="hidden sm:inline">Scopri i pacchetti</span>
+            <span className="sm:hidden">Pacchetti</span>
           </Link>
         </div>
       </header>
