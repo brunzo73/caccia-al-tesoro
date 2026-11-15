@@ -1,151 +1,458 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { packages, faqs } from "@/data/packages";
-import { PackageCard } from "@/components/PackageCard";
+import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
+import { Pricing } from "@/components/Pricing";
+import { faqs, photos, reviews } from "@/data/packages";
+
+const TITLE = "Caccia al tesoro pronta in 15 minuti: kit PDF per feste di bambini";
+const DESCRIPTION =
+  "Kit completi in PDF divisi per età (3-11+ anni), per la casa e per il giardino: scarichi, stampi su A4 e la festa è pronta. Senza animatore.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Cacce al tesoro in PDF per feste di bambini" },
-      { name: "description", content: "Scegli, personalizza e scarica una caccia al tesoro pronta per il compleanno." },
-      { property: "og:title", content: "Cacce al tesoro in PDF per feste di bambini" },
-      { property: "og:description", content: "Scegli, personalizza e scarica una caccia al tesoro pronta." },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
     ],
   }),
   component: Index,
 });
 
-const steps = [
-  { n: "1", t: "Scegli", d: "Trova l'avventura giusta per età e luogo.", e: "🔍" },
-  { n: "2", t: "Personalizza", d: "Inserisci nome, età e dettagli della festa.", e: "✏️" },
-  { n: "3", t: "Scarica", d: "Ricevi subito il PDF pronto da stampare.", e: "📄" },
+const pains = [
+  {
+    e: "🌙",
+    t: "Le serate perse nel fai-da-te",
+    d: "Ore su Google e Pinterest a cercare indovinelli sconclusionati, senza una storia che li tenga insieme. E al giorno della festa arrivi già esausta.",
+  },
+  {
+    e: "💸",
+    t: "Il salasso dell'animatore",
+    d: "150-250 € per due ore di animazione, con la solita cassa bluetooth e i soliti giochi. E il dubbio che i bambini non si lascino coinvolgere.",
+  },
+  {
+    e: "🌧️",
+    t: "L'ansia del meteo, senza piano B",
+    d: "Hai organizzato tutto al parco e il cielo si copre. Dieci bambini chiusi in salotto e nessuna idea di come tenerli occupati.",
+  },
 ];
 
-const reviews = [
+const steps = [
   {
-    name: "Marta R.",
-    role: "Mamma di Sofia, 7 anni",
-    text: "Ho scaricato il pacchetto Pirati la mattina della festa e in 10 minuti avevo tutto pronto. I bambini si sono divertiti moltissimo e io non ho dovuto improvvisare nulla!",
-    stars: 5,
-    avatar: "👩",
+    e: "📲",
+    photo: photos.passo1,
+    t: "Scarica il kit",
+    d: "Dopo il pagamento ricevi subito il PDF via email, sul telefono o sul computer.",
   },
   {
-    name: "Giulia T.",
-    role: "Educatrice asilo nido",
-    text: "Lo uso per le feste di fine anno scolastico. Ogni pacchetto è ben strutturato, i livelli di difficoltà sono perfetti e i bambini sono sempre entusiasti. Lo consiglio a tutte le colleghe.",
-    stars: 5,
-    avatar: "👩‍🏫",
+    e: "✂️",
+    photo: photos.passo2,
+    t: "Stampa e ritaglia in 10 minuti",
+    d: "Basta una normale stampante A4. Poi scrivi a penna il nome del festeggiato sui diplomi: è il tocco che li rende suoi.",
   },
   {
-    name: "Alessandro M.",
-    role: "Papà di Luca, 9 anni",
-    text: "Mio figlio voleva una festa da detective. Ho trovato il pacchetto perfetto, l'ho personalizzato con il suo nome e i suoi amici non parlavano d'altro per settimane. Vale ogni centesimo.",
-    stars: 5,
-    avatar: "👨",
+    e: "🗺️",
+    photo: photos.passo3,
+    t: "Nascondi gli indizi e parti",
+    d: "Segui la guida per i nascondigli: tu leggi la storia, i bambini superano le prove e trovano il tesoro.",
+  },
+];
+
+const contents = [
+  {
+    img: "/images/kit/dino-guida.jpg",
+    t: "Guida per l'organizzatore",
+    d: "Lista dei materiali, soluzioni e nascondigli intelligenti: sai sempre cosa fare.",
+  },
+  {
+    img: "/images/kit/dino-storia.jpg",
+    t: "Storia a capitoli",
+    d: "Da leggere ad alta voce, con un cattivo simpatico che tiene i bambini incollati.",
+  },
+  {
+    img: "/images/kit/fate-carte.jpg",
+    t: "6 prove da superare insieme",
+    d: "Sfide fisiche e mentali adatte all'età: ogni prova superata sblocca un indizio.",
+  },
+  {
+    img: "/images/kit/pirati-carte.jpg",
+    t: "Carte-indizio illustrate",
+    d: "A colori, con la linea tratteggiata per ritagliarle in un attimo.",
+  },
+  {
+    img: "/images/kit/dino-diploma.jpg",
+    t: "Diplomi finali",
+    d: "Uno per ogni partecipante, da compilare a mano e portare a casa.",
+  },
+];
+
+const reasons = [
+  {
+    e: "📖",
+    t: "Una storia vera, non indovinelli a caso",
+    d: "Ogni avventura ha un inizio, un cattivo simpatico e un finale. I bambini vogliono sapere come va a finire.",
+  },
+  {
+    e: "🤝",
+    t: "Si gioca tutti insieme",
+    d: "Niente squadre e nessun perdente: il gruppo collabora e alla fine ogni bambino riceve il suo diploma.",
+  },
+  {
+    e: "🎯",
+    t: "Pensata per la loro età",
+    d: "Immagini e gioco di movimento per i più piccoli, enigmi e codici da decifrare per i più grandi.",
   },
 ];
 
 function Index() {
   return (
-    <div className="space-y-14">
-      <section className="text-center">
-        <h1 className="text-4xl font-extrabold sm:text-5xl">
-          La <span className="text-primary">caccia al tesoro</span> pronta per la tua <span className="text-secondary">festa</span>
-        </h1>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-          Avventure in PDF per compleanni ed eventi per bambini, personalizzate in pochi minuti.
-        </p>
-        <Link to="/catalogo" className="btn mt-6 bg-primary text-primary-foreground">Scopri le avventure</Link>
-      </section>
-
-      <section className="grid gap-4 sm:grid-cols-3">
-        {steps.map((s) => (
-          <div key={s.n} className="card-fun p-5 text-center">
-            <div className="text-4xl">{s.e}</div>
-            <h2 className="mt-2 text-2xl font-bold text-primary">{s.n}. {s.t}</h2>
-            <p className="mt-1 text-muted-foreground">{s.d}</p>
+    <>
+      {/* 1. HERO */}
+      <Band className="pt-8 sm:pt-12">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
+          <div className="text-center lg:text-left">
+            <h1 className="text-balance text-4xl font-extrabold sm:text-5xl">
+              Organizza una caccia al tesoro memorabile{" "}
+              <span className="text-primary">in 15 minuti</span>, senza spostare un mobile e senza
+              spendere 200 € di animatore
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground lg:mx-0">
+              Kit completi in PDF pronti all'uso, divisi per età (3-11+ anni), sia per la casa che
+              per il giardino: scarichi all'istante, stampi in 2 minuti e la festa è pronta.
+            </p>
+            <a
+              href="#pacchetti"
+              className="btn mt-7 bg-primary px-8 py-4 text-lg text-primary-foreground shadow-lg"
+            >
+              Scopri i Pacchetti Festa
+            </a>
+            <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-bold lg:justify-start">
+              <li>⚡ Download istantaneo</li>
+              <li>🖨️ Stampi a casa su fogli A4</li>
+              <li>🎒 16 avventure dai 3 agli 11+ anni</li>
+            </ul>
           </div>
-        ))}
-      </section>
-
-      <section>
-        <h2 className="mb-4 text-3xl font-extrabold">I nostri pacchetti</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {packages.map((p) => <PackageCard key={p.slug} p={p} />)}
+          <HeroMockup />
         </div>
-      </section>
+      </Band>
 
-      {/* Sezione anteprima PDF */}
-      <section className="rounded-2xl bg-amber-50 p-8">
-        <h2 className="mb-2 text-3xl font-extrabold text-center">Cosa ricevi nel PDF</h2>
-        <p className="mb-8 text-center text-muted-foreground">Tutto pronto da stampare: indizi, bigliettini e diploma finale</p>
-        <div className="grid gap-6 sm:grid-cols-3">
-          <div className="text-center">
-            <img
-              src="/images/pdf-cover.jpg"
-              alt="Copertina del PDF"
-              className="mx-auto w-full max-w-[220px] rounded-xl shadow-md"
-            />
-            <p className="mt-3 font-bold">Copertina personalizzata</p>
-            <p className="text-sm text-muted-foreground">Con il nome del festeggiato e il tema scelto</p>
-          </div>
-          <div className="text-center">
-            <img
-              src="/images/clue-card.jpg"
-              alt="Bigliettino indizio"
-              className="mx-auto w-full max-w-[220px] rounded-xl shadow-md"
-            />
-            <p className="mt-3 font-bold">Bigliettini da ritagliare</p>
-            <p className="text-sm text-muted-foreground">Indizi pronti da nascondere, con istruzioni per l'organizzatore</p>
-          </div>
-          <div className="text-center">
-            <img
-              src="/images/diploma.jpg"
-              alt="Diploma finale"
-              className="mx-auto w-full max-w-[220px] rounded-xl shadow-md"
-            />
-            <p className="mt-3 font-bold">Diploma finale</p>
-            <p className="text-sm text-muted-foreground">Da consegnare ai bambini come premio al termine dell'avventura</p>
-          </div>
-        </div>
-        <div className="mt-8 text-center">
-          <Link to="/catalogo" className="btn bg-primary text-primary-foreground">Scegli il tuo pacchetto</Link>
-        </div>
-      </section>
-
-      {/* Sezione recensioni */}
-      <section>
-        <h2 className="mb-2 text-3xl font-extrabold text-center">Cosa dicono i genitori</h2>
-        <p className="mb-8 text-center text-muted-foreground">Oltre 500 feste organizzate con successo</p>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {reviews.map((r) => (
-            <div key={r.name} className="card-fun p-5 flex flex-col gap-3">
-              <div className="flex items-center gap-3">
-                <span className="text-4xl">{r.avatar}</span>
+      {/* 2. IL PROBLEMA */}
+      <Band tone="muted">
+        <Heading kicker="Ti suona familiare?">
+          Organizzare la festa non dovrebbe costarti tre serate
+        </Heading>
+        <div className="mt-10 grid items-center gap-8 lg:grid-cols-[1fr_1.4fr]">
+          <Photo
+            src={photos.stress}
+            emoji="😩"
+            caption="Mezzanotte, venti schede aperte"
+            tone="dark"
+          />
+          <ul className="space-y-4">
+            {pains.map((p) => (
+              <li key={p.t} className="flex gap-4 rounded-3xl border-2 border-border bg-card p-5">
+                <span className="text-4xl" aria-hidden>
+                  {p.e}
+                </span>
                 <div>
-                  <p className="font-bold">{r.name}</p>
-                  <p className="text-xs text-muted-foreground">{r.role}</p>
+                  <h3 className="text-xl font-extrabold">{p.t}</h3>
+                  <p className="mt-1 text-muted-foreground">{p.d}</p>
                 </div>
-              </div>
-              <div className="flex gap-0.5 text-amber-400">
-                {"★".repeat(r.stars)}
-              </div>
-              <p className="text-sm text-muted-foreground italic">"{r.text}"</p>
-            </div>
-          ))}
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
+      </Band>
 
-      <section>
-        <h2 className="mb-4 text-3xl font-extrabold">Domande frequenti</h2>
-        <div className="space-y-3">
-          {faqs.map((f) => (
-            <details key={f.q} className="card-fun p-4">
-              <summary className="cursor-pointer font-bold">{f.q}</summary>
-              <p className="mt-2 text-muted-foreground">{f.a}</p>
-            </details>
-          ))}
+      {/* 3. LA SOLUZIONE IN 3 PASSI */}
+      <Band>
+        <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
+          <div>
+            <Heading kicker="Come funziona" align="left">
+              Dal download al tesoro in 3 passi
+            </Heading>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Hai già tutto: la storia, le prove, gli indizi e i diplomi. A te resta solo la parte
+              bella.
+            </p>
+          </div>
+          <Photo
+            src={photos.gioia}
+            emoji="🥳"
+            caption="Loro giocano, tu ti godi la festa"
+            tone="light"
+          />
         </div>
-      </section>
+        <ol className="mt-10 grid gap-5 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <li key={s.t} className="card-fun overflow-hidden">
+              {s.photo ? (
+                <img
+                  src={s.photo}
+                  alt=""
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              ) : (
+                <div
+                  className="flex aspect-[4/3] items-center justify-center bg-accent text-7xl"
+                  aria-hidden
+                >
+                  {s.e}
+                </div>
+              )}
+              <div className="p-5">
+                <p className="text-sm font-extrabold uppercase tracking-wide text-accent-foreground">
+                  Passo {i + 1}
+                </p>
+                <h3 className="text-2xl font-extrabold">{s.t}</h3>
+                <p className="mt-1 text-muted-foreground">{s.d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Band>
+
+      {/* 4. ANTEPRIMA */}
+      <Band tone="warm">
+        <Heading kicker="Pagine vere, dai nostri kit">Cosa c'è dentro ogni kit</Heading>
+        <ul className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+          {contents.map((c) => (
+            <li key={c.t} className="min-w-0">
+              <img
+                src={c.img}
+                alt={`Pagina del kit: ${c.t}`}
+                loading="lazy"
+                className="aspect-[1/1.414] w-full rounded-xl border border-border object-cover object-top shadow-lg"
+              />
+              <h3 className="mt-3 text-lg font-extrabold">{c.t}</h3>
+              <p className="text-sm text-muted-foreground">{c.d}</p>
+            </li>
+          ))}
+        </ul>
+      </Band>
+
+      {/* 5. FIDUCIA: recensioni vere se presenti, altrimenti i motivi per cui funziona */}
+      <Band>
+        {reviews.length > 0 ? (
+          <>
+            <Heading kicker="Chi l'ha già provata">Cosa dicono i genitori</Heading>
+            <ul className="mt-10 grid gap-5 md:grid-cols-3">
+              {reviews.map((r) => (
+                <li key={r.name} className="card-fun flex flex-col gap-3 p-5">
+                  {r.photo && (
+                    <img
+                      src={r.photo}
+                      alt=""
+                      loading="lazy"
+                      className="aspect-square w-full -rotate-1 rounded-lg border-8 border-white object-cover shadow-md"
+                    />
+                  )}
+                  <p className="text-amber-500" aria-label="5 stelle su 5">
+                    ★★★★★
+                  </p>
+                  <p className="flex-1">«{r.text}»</p>
+                  <p className="font-extrabold">
+                    {r.name}
+                    {r.role && (
+                      <span className="font-semibold text-muted-foreground"> · {r.role}</span>
+                    )}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <>
+            <Heading kicker="Perché funziona">
+              I bambini restano dentro la storia fino al tesoro
+            </Heading>
+            <ul className="mt-10 grid gap-5 md:grid-cols-3">
+              {reasons.map((r) => (
+                <li key={r.t} className="card-fun p-6">
+                  <span className="text-5xl" aria-hidden>
+                    {r.e}
+                  </span>
+                  <h3 className="mt-3 text-xl font-extrabold">{r.t}</h3>
+                  <p className="mt-1 text-muted-foreground">{r.d}</p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </Band>
+
+      {/* 6. PRICING */}
+      <Band tone="muted" id="pacchetti">
+        <Heading kicker="Scegli il tuo pacchetto">
+          Una festa riuscita costa meno di una torta
+        </Heading>
+        <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground">
+          Pagamento unico, download immediato. I file restano tuoi e puoi ristamparli quando vuoi.
+        </p>
+        <div className="mt-10">
+          <Pricing />
+        </div>
+      </Band>
+
+      {/* 7. FAQ */}
+      <Band>
+        <div className="mx-auto max-w-3xl">
+          <Heading kicker="Domande frequenti">Tutto quello che ti serve sapere</Heading>
+          <div className="mt-8 space-y-3">
+            {faqs.map((f) => (
+              <details
+                key={f.q}
+                className="group rounded-2xl border-2 border-border bg-card px-5 py-4"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-extrabold">
+                  {f.q}
+                  <span
+                    className="text-2xl text-primary transition-transform group-open:rotate-45"
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-muted-foreground">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </Band>
+
+      {/* 8. ULTIMO RICHIAMO */}
+      <Band tone="cta">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-balance text-3xl font-extrabold sm:text-4xl">
+            La prossima festa può essere pronta stasera
+          </h2>
+          <p className="mt-4 text-lg">
+            Storia, prove, indizi e diplomi sono già fatti. Con il Pack Età hai 4 avventure, 2 per
+            la casa e 2 per l'aperto: qualunque tempo faccia, la festa è salva.
+          </p>
+          <a
+            href="#pacchetti"
+            className="btn mt-7 bg-white px-8 py-4 text-lg text-foreground shadow-lg"
+          >
+            Sblocca i 4 Kit Età a 24,90 €
+          </a>
+        </div>
+      </Band>
+    </>
+  );
+}
+
+/* ── Elementi di layout ───────────────────────────────────────────────── */
+
+const tones = {
+  plain: "",
+  muted: "bg-muted",
+  warm: "bg-amber-50",
+  cta: "bg-secondary text-foreground",
+};
+
+function Band({
+  children,
+  tone = "plain",
+  id,
+  className = "",
+}: {
+  children: ReactNode;
+  tone?: keyof typeof tones;
+  id?: string;
+  className?: string;
+}) {
+  return (
+    <section id={id} className={`scroll-mt-4 px-4 py-14 sm:py-20 ${tones[tone]} ${className}`}>
+      <div className="mx-auto max-w-5xl">{children}</div>
+    </section>
+  );
+}
+
+function Heading({
+  children,
+  kicker,
+  align = "center",
+}: {
+  children: ReactNode;
+  kicker: string;
+  align?: "center" | "left";
+}) {
+  return (
+    <div className={align === "center" ? "mx-auto max-w-2xl text-center" : ""}>
+      <p className="text-sm font-extrabold uppercase tracking-widest text-accent-foreground">
+        {kicker}
+      </p>
+      <h2 className="mt-2 text-balance text-3xl font-extrabold sm:text-4xl">{children}</h2>
+    </div>
+  );
+}
+
+/** Foto lifestyle: mostra la foto se presente in `photos`, altrimenti un'illustrazione. */
+function Photo({
+  src,
+  emoji,
+  caption,
+  tone,
+}: {
+  src: string | null;
+  emoji: string;
+  caption: string;
+  tone: "dark" | "light";
+}) {
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt={caption}
+        loading="lazy"
+        className="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl"
+      />
+    );
+  }
+  return (
+    <div
+      className={`flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-3xl p-6 text-center shadow-xl ${
+        tone === "dark"
+          ? "bg-gradient-to-br from-slate-700 to-slate-900 text-white"
+          : "bg-gradient-to-br from-amber-200 to-orange-300 text-foreground"
+      }`}
+    >
+      <span className="text-8xl" aria-hidden>
+        {emoji}
+      </span>
+      <p className="font-display text-xl font-extrabold">{caption}</p>
+    </div>
+  );
+}
+
+/** Pagine reali di un kit disposte a ventaglio, come fogli appena stampati sul tavolo. */
+function HeroMockup() {
+  const sheet = "absolute w-[46%] rounded-md border border-black/10 shadow-2xl";
+  return (
+    <div className="relative mx-auto aspect-[5/4] w-full max-w-lg rounded-[2rem] bg-gradient-to-br from-amber-100 to-orange-200">
+      <img
+        src="/images/kit/dino-storia.jpg"
+        alt=""
+        className={`${sheet} left-[5%] top-[12%] -rotate-12`}
+      />
+      <img
+        src="/images/kit/dino-carte.jpg"
+        alt=""
+        className={`${sheet} right-[5%] top-[12%] rotate-12`}
+      />
+      <img
+        src="/images/kit/dino-copertina.jpg"
+        alt="Le pagine stampate del kit Dinosauri in azione: copertina, storia e carte-indizio"
+        className={`${sheet} left-[27%] top-[6%] -rotate-2`}
+      />
+      <span className="absolute bottom-[6%] left-[4%] -rotate-6 rounded-full bg-white px-4 py-2 text-sm font-extrabold shadow-lg">
+        ✂️ Stampa e ritaglia
+      </span>
+      <span className="absolute bottom-[8%] right-[4%] rotate-3 rounded-full bg-primary px-4 py-2 text-sm font-extrabold text-primary-foreground shadow-lg">
+        🏆 Diploma incluso
+      </span>
     </div>
   );
 }

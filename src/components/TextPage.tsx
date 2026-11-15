@@ -1,10 +1,16 @@
 export function TextPage({ title }: { title: string }) {
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl px-4 py-10">
       <h1 className="text-4xl font-extrabold">{title}</h1>
       <div className="card-fun mt-5 space-y-3 p-5 text-muted-foreground">
-        <p>Testo segnaposto. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>
+          Testo segnaposto. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <p>
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat.
+        </p>
       </div>
     </div>
   );

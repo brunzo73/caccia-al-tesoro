@@ -82,8 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Cacce al tesoro per feste di bambini" },
-      { name: "description", content: "Cacce al tesoro in PDF pronte per compleanni ed eventi per bambini." },
+      { title: "Facciamo Festa: cacce al tesoro in PDF per feste di bambini" },
+      {
+        name: "description",
+        content: "Cacce al tesoro in PDF pronte per compleanni ed eventi per bambini.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -127,27 +130,29 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <header className="sticky top-0 z-10 border-b-2 border-border bg-background/95 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
+      <header className="px-4 py-4">
+        <div className="mx-auto flex max-w-5xl justify-center sm:justify-start">
           <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-xl">{brand.logo}</span>
-            <span className="font-display text-xl font-extrabold text-primary">{brand.name}</span>
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-xl">
+              {brand.logo}
+            </span>
+            <span className="font-display text-xl font-extrabold text-foreground">
+              {brand.name}
+            </span>
           </Link>
-          <nav className="flex gap-4 text-sm font-bold">
-            <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: "text-secondary" }}>Home</Link>
-            <Link to="/catalogo" activeProps={{ className: "text-secondary" }}>Catalogo</Link>
-          </nav>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-4 py-8">
+      <main>
         <Outlet />
       </main>
-      <footer className="mt-12 bg-secondary text-secondary-foreground">
-        <div className="mx-auto flex max-w-5xl flex-wrap gap-4 px-4 py-6 text-sm font-semibold">
-          <span>© {brand.name}</span>
-          <Link to="/privacy">Privacy</Link>
-          <Link to="/termini">Termini</Link>
-          <Link to="/contatti">Contatti</Link>
+      <footer className="bg-foreground px-4 text-background">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 py-6 text-sm font-semibold">
+          <span>© {brand.name} · Cacce al tesoro in PDF pronte da stampare</span>
+          <nav className="flex gap-5">
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/termini">Termini</Link>
+            <Link to="/contatti">Contatti</Link>
+          </nav>
         </div>
       </footer>
     </QueryClientProvider>

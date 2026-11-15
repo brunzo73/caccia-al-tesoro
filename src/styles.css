@@ -42,7 +42,7 @@
   --card-foreground: oklch(0.28 0.04 240);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.28 0.04 240);
-  --primary: oklch(0.72 0.18 50);
+  --primary: oklch(0.64 0.19 45);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.72 0.12 190);
   --secondary-foreground: oklch(1 0 0);
@@ -58,6 +58,8 @@
 }
 
 @layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   * { border-color: var(--color-border); }
   body {
     background-color: var(--color-background);
