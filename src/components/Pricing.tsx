@@ -32,25 +32,23 @@ function OfferCard({ o, onPick }: { o: Offer; onPick: () => void }) {
 
   return (
     <div
-      className={`relative flex flex-col rounded-3xl bg-card p-6 ${
+      className={`relative flex flex-col rounded-3xl border-[3px] border-foreground bg-card p-6 ${
         o.featured
-          ? "order-first border-4 border-primary shadow-2xl lg:order-none lg:-mt-4 lg:mb-4"
-          : "border-2 border-border shadow-md"
+          ? "order-first shadow-[8px_8px_0_#f00078] lg:order-none lg:-mt-4 lg:mb-4"
+          : "shadow-[6px_6px_0_#131638]"
       }`}
     >
       {o.badge && (
         <span
-          className={`absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-xs font-extrabold uppercase tracking-wide ${
-            o.featured
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary text-secondary-foreground"
+          className={`absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border-2 border-foreground px-4 py-1 text-xs font-extrabold uppercase tracking-wide ${
+            o.featured ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
           }`}
         >
           {o.badge}
         </span>
       )}
       <h3 className="text-2xl font-extrabold">{o.name}</h3>
-      <p className="font-bold text-accent-foreground">{o.tagline}</p>
+      <p className="font-bold text-primary">{o.tagline}</p>
 
       <div className="mt-4 flex flex-wrap items-baseline gap-x-3">
         <span className="font-display text-5xl font-extrabold text-foreground">

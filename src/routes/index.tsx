@@ -108,7 +108,7 @@ function Index() {
   return (
     <>
       {/* 1. HERO */}
-      <Band className="pt-8 sm:pt-12">
+      <Band className="pt-8 sm:pt-12" confetti>
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div className="text-center lg:text-left">
             <h1 className="text-balance text-4xl font-extrabold sm:text-5xl">
@@ -122,7 +122,7 @@ function Index() {
             </p>
             <a
               href="#pacchetti"
-              className="btn mt-7 bg-primary px-8 py-4 text-lg text-primary-foreground shadow-lg"
+              className="btn mt-7 bg-primary px-8 py-4 text-lg text-primary-foreground"
             >
               Scopri i Pacchetti Festa
             </a>
@@ -150,7 +150,7 @@ function Index() {
           />
           <ul className="space-y-4">
             {pains.map((p) => (
-              <li key={p.t} className="flex gap-4 rounded-3xl border-2 border-border bg-card p-5">
+              <li key={p.t} className="pop flex gap-4 rounded-3xl bg-card p-5">
                 <span className="text-4xl" aria-hidden>
                   {p.e}
                 </span>
@@ -202,7 +202,7 @@ function Index() {
                 </div>
               )}
               <div className="p-5">
-                <p className="text-sm font-extrabold uppercase tracking-wide text-accent-foreground">
+                <p className="text-sm font-extrabold uppercase tracking-wide text-primary">
                   Passo {i + 1}
                 </p>
                 <h3 className="text-2xl font-extrabold">{s.t}</h3>
@@ -223,7 +223,7 @@ function Index() {
                 src={c.img}
                 alt={`Pagina del kit: ${c.t}`}
                 loading="lazy"
-                className="aspect-[1/1.414] w-full rounded-xl border border-border object-cover object-top shadow-lg"
+                className="pop-sm aspect-[1/1.414] w-full rounded-xl object-cover object-top"
               />
               <h3 className="mt-3 text-lg font-extrabold">{c.t}</h3>
               <p className="text-sm text-muted-foreground">{c.d}</p>
@@ -301,10 +301,7 @@ function Index() {
           <Heading kicker="Domande frequenti">Tutto quello che ti serve sapere</Heading>
           <div className="mt-8 space-y-3">
             {faqs.map((f) => (
-              <details
-                key={f.q}
-                className="group rounded-2xl border-2 border-border bg-card px-5 py-4"
-              >
+              <details key={f.q} className="pop group rounded-2xl bg-card px-5 py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-extrabold">
                   {f.q}
                   <span
@@ -322,7 +319,7 @@ function Index() {
       </Band>
 
       {/* 8. ULTIMO RICHIAMO */}
-      <Band tone="cta">
+      <Band tone="cta" confetti>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-3xl font-extrabold sm:text-4xl">
             La prossima festa può essere pronta stasera
@@ -331,10 +328,7 @@ function Index() {
             Storia, prove, indizi e diplomi sono già fatti. Con il Pack Età hai 4 avventure, 2 per
             la casa e 2 per l'aperto: qualunque tempo faccia, la festa è salva.
           </p>
-          <a
-            href="#pacchetti"
-            className="btn mt-7 bg-white px-8 py-4 text-lg text-foreground shadow-lg"
-          >
+          <a href="#pacchetti" className="btn mt-7 bg-accent px-8 py-4 text-lg text-foreground">
             Sblocca i 4 Kit Età a 24,90 €
           </a>
         </div>
@@ -357,16 +351,66 @@ function Band({
   tone = "plain",
   id,
   className = "",
+  confetti = false,
 }: {
   children: ReactNode;
   tone?: keyof typeof tones;
   id?: string;
   className?: string;
+  confetti?: boolean;
 }) {
   return (
-    <section id={id} className={`scroll-mt-20 px-4 py-14 sm:py-20 ${tones[tone]} ${className}`}>
-      <div className="mx-auto max-w-5xl">{children}</div>
+    <section
+      id={id}
+      className={`relative scroll-mt-20 px-4 py-14 sm:py-20 ${confetti ? "overflow-hidden" : ""} ${tones[tone]} ${className}`}
+    >
+      {confetti && <Confetti />}
+      <div className="relative z-10 mx-auto max-w-5xl">{children}</div>
     </section>
+  );
+}
+
+/** Coriandoli decorativi sparsi nei bordi della sezione (non coprono il testo). */
+function Confetti() {
+  const pieces = [
+    { l: "3%", t: "16%", c: "var(--primary)", s: "bar", r: -18, z: 18 },
+    { l: "14%", t: "72%", c: "var(--secondary)", s: "dot", r: 0, z: 13 },
+    { l: "24%", t: "9%", c: "var(--accent)", s: "diamond", r: 20, z: 14 },
+    { l: "34%", t: "85%", c: "var(--primary)", s: "dot", r: 0, z: 11 },
+    { l: "47%", t: "7%", c: "var(--secondary)", s: "bar", r: 28, z: 16 },
+    { l: "58%", t: "88%", c: "var(--accent)", s: "diamond", r: -16, z: 15 },
+    { l: "68%", t: "12%", c: "var(--primary)", s: "dot", r: 0, z: 12 },
+    { l: "78%", t: "78%", c: "var(--secondary)", s: "bar", r: -24, z: 18 },
+    { l: "88%", t: "18%", c: "var(--accent)", s: "diamond", r: 14, z: 15 },
+    { l: "95%", t: "64%", c: "var(--primary)", s: "dot", r: 0, z: 12 },
+    { l: "9%", t: "40%", c: "var(--accent)", s: "dot", r: 0, z: 10 },
+    { l: "92%", t: "40%", c: "var(--secondary)", s: "diamond", r: 22, z: 13 },
+  ];
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+      {pieces.map((p, i) => {
+        const base = { position: "absolute" as const, left: p.l, top: p.t, background: p.c };
+        const style =
+          p.s === "dot"
+            ? { ...base, width: p.z, height: p.z, borderRadius: 999 }
+            : p.s === "bar"
+              ? {
+                  ...base,
+                  width: p.z * 1.9,
+                  height: p.z * 0.55,
+                  borderRadius: 999,
+                  transform: `rotate(${p.r}deg)`,
+                }
+              : {
+                  ...base,
+                  width: p.z,
+                  height: p.z,
+                  borderRadius: 3,
+                  transform: `rotate(${p.r}deg)`,
+                };
+        return <span key={i} style={style} />;
+      })}
+    </div>
   );
 }
 
@@ -381,9 +425,7 @@ function Heading({
 }) {
   return (
     <div className={align === "center" ? "mx-auto max-w-2xl text-center" : ""}>
-      <p className="text-sm font-extrabold uppercase tracking-widest text-accent-foreground">
-        {kicker}
-      </p>
+      <p className="text-sm font-extrabold uppercase tracking-widest text-primary">{kicker}</p>
       <h2 className="mt-2 text-balance text-3xl font-extrabold sm:text-4xl">{children}</h2>
     </div>
   );
@@ -413,10 +455,10 @@ function Photo({
   }
   return (
     <div
-      className={`flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-3xl p-6 text-center shadow-xl ${
+      className={`pop flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-3xl p-6 text-center ${
         tone === "dark"
           ? "bg-gradient-to-br from-slate-700 to-slate-900 text-white"
-          : "bg-gradient-to-br from-amber-200 to-orange-300 text-foreground"
+          : "bg-gradient-to-br from-[#FFE100] to-[#00C4E8] text-foreground"
       }`}
     >
       <span className="text-8xl" aria-hidden>
@@ -429,9 +471,9 @@ function Photo({
 
 /** Pagine reali di un kit disposte a ventaglio, come fogli appena stampati sul tavolo. */
 function HeroMockup() {
-  const sheet = "absolute w-[46%] rounded-md border border-black/10 shadow-2xl";
+  const sheet = "absolute w-[46%] rounded-md border-2 border-foreground shadow-xl";
   return (
-    <div className="relative mx-auto aspect-[5/4] w-full max-w-lg rounded-[2rem] bg-gradient-to-br from-amber-100 to-orange-200">
+    <div className="pop relative mx-auto aspect-[5/4] w-full max-w-lg rounded-[2rem] bg-gradient-to-br from-[#FFE100] to-[#00C4E8]">
       <img
         src="/images/kit/dino-storia.jpg"
         alt=""

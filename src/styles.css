@@ -35,55 +35,114 @@
 }
 
 :root {
-  /* MissioneFesta — palette "Festa Pop": fucsia + giallo + turchese su crema */
+  /* MissioneFesta — palette "Festa Esplosiva": fucsia + giallo + turchese su crema,
+     con blu notte per testi e bordi cartoon. */
   --radius: 1.25rem;
-  --background: #fffbea; /* crema */
-  --foreground: #1b1b3a; /* blu notte */
+  --background: #fffbeb; /* crema caldo */
+  --foreground: #131638; /* blu notte */
   --card: #ffffff;
-  --card-foreground: #1b1b3a;
+  --card-foreground: #131638;
   --popover: #ffffff;
-  --popover-foreground: #1b1b3a;
-  --primary: #e6007e; /* fucsia — bottoni e accenti */
+  --popover-foreground: #131638;
+  --primary: #f00078; /* fucsia elettrico — bottoni e azioni */
   --primary-foreground: #ffffff;
-  --secondary: #00b8d9; /* turchese — bande e supporto */
-  --secondary-foreground: #1b1b3a;
-  --muted: #fbf0c9; /* giallo pallido — bande alternate */
-  --muted-foreground: #585670;
-  --accent: #ffefa8; /* giallo chiaro — pill e sfondi */
-  --accent-foreground: #b00063; /* fucsia scuro — testo accento */
+  --secondary: #00c4e8; /* turchese vibrante — bande e supporto */
+  --secondary-foreground: #131638;
+  --muted: #fff3c0; /* giallo pallido — bande alternate */
+  --muted-foreground: #4a4c6b;
+  --accent: #ffe100; /* giallo sole — badge, spunte, dettagli */
+  --accent-foreground: #131638; /* testo scuro su giallo */
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: #ffffff;
-  --border: #ece3d0;
-  --input: #ece3d0;
-  --ring: #e6007e;
+  --border: #131638; /* bordi cartoon in blu notte */
+  --input: #d9d8e6;
+  --ring: #f00078;
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  * { border-color: var(--color-border); }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  * {
+    border-color: var(--color-border);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+  }
 }
 
 @utility btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 9999px; padding: 0.75rem 1.5rem; font-weight: 800;
-  transition: transform .15s;
-  &:hover { transform: translateY(-2px); }
-  &:disabled { opacity: .5; transform: none; }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 800;
+  border: 3px solid var(--color-foreground);
+  box-shadow: 4px 4px 0 var(--color-foreground);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--color-foreground);
+  }
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--color-foreground);
+  }
+  &:disabled {
+    opacity: 0.5;
+    transform: none;
+    box-shadow: 4px 4px 0 var(--color-foreground);
+  }
 }
+/* Card "cartoon": bordo spesso blu notte + ombra dura. */
 @utility card-fun {
-  background: var(--color-card); border-radius: var(--radius-2xl);
-  border: 2px solid var(--color-border);
-  box-shadow: 0 6px 0 color-mix(in oklab, var(--color-secondary) 25%, transparent);
+  background: var(--color-card);
+  border-radius: var(--radius-2xl);
+  border: 3px solid var(--color-foreground);
+  box-shadow: 6px 6px 0 var(--color-foreground);
+}
+/* Bordo + ombra dura riutilizzabili (card prezzi, FAQ, immagini). */
+@utility pop {
+  border: 3px solid var(--color-foreground);
+  box-shadow: 6px 6px 0 var(--color-foreground);
+}
+@utility pop-sm {
+  border: 2px solid var(--color-foreground);
+  box-shadow: 4px 4px 0 var(--color-foreground);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+  .btn:hover,
+  .btn:active {
+    transform: none;
+  }
 }
 @utility field {
-  width: 100%; border-radius: var(--radius-lg); border: 2px solid var(--color-input);
-  background: var(--color-card); padding: 0.7rem 1rem;
-  &:focus { outline: none; border-color: var(--color-ring); }
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-input);
+  background: var(--color-card);
+  padding: 0.7rem 1rem;
+  &:focus {
+    outline: none;
+    border-color: var(--color-ring);
+  }
 }
