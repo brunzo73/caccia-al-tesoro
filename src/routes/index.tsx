@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import heroKit from "@/assets/hero-kit-dinosauri.jpg.asset.json";
 import { Pricing } from "@/components/Pricing";
 import { faqs, photos, reviews } from "@/data/packages";
 
@@ -117,8 +118,7 @@ function Index() {
               spendere nulla per l'animazione
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground lg:mx-0">
-              Kit completi in PDF pronti all'uso, divisi per età (3-11+ anni), sia per la casa che
-              per il giardino: scarichi all'istante, stampi in 2 minuti e la festa è pronta.
+              Kit completi in PDF pronti all'uso, divisi per età (dai 3 agli 11 anni).
             </p>
             <a
               href="#pacchetti"
@@ -469,32 +469,13 @@ function Photo({
   );
 }
 
-/** Pagine reali di un kit disposte a ventaglio, come fogli appena stampati sul tavolo. */
+/** Immagine di apertura del kit Dinosauri in azione. */
 function HeroMockup() {
-  const sheet = "absolute w-[46%] rounded-md border-2 border-foreground shadow-xl";
   return (
-    <div className="pop relative mx-auto aspect-[5/4] w-full max-w-lg rounded-[2rem] bg-gradient-to-br from-[#FFE100] to-[#00C4E8]">
-      <img
-        src="/images/kit/dino-storia.jpg"
-        alt=""
-        className={`${sheet} left-[5%] top-[12%] -rotate-12`}
-      />
-      <img
-        src="/images/kit/dino-carte.jpg"
-        alt=""
-        className={`${sheet} right-[5%] top-[12%] rotate-12`}
-      />
-      <img
-        src="/images/kit/dino-copertina.jpg"
-        alt="Le pagine stampate del kit Dinosauri in azione: copertina, storia e carte-indizio"
-        className={`${sheet} left-[27%] top-[6%] -rotate-2`}
-      />
-      <span className="absolute bottom-[6%] left-[4%] -rotate-6 rounded-full bg-white px-4 py-2 text-sm font-extrabold shadow-lg">
-        ✂️ Stampa e ritaglia
-      </span>
-      <span className="absolute bottom-[8%] right-[4%] rotate-3 rounded-full bg-primary px-4 py-2 text-sm font-extrabold text-primary-foreground shadow-lg">
-        🏆 Diploma incluso
-      </span>
-    </div>
+    <img
+      src={heroKit.url}
+      alt="Il kit Dinosauri in azione: copertina, storia e carte-indizio da stampare, con diploma incluso"
+      className="pop mx-auto aspect-[5/4] w-full max-w-lg rounded-[2rem] object-cover"
+    />
   );
 }
