@@ -363,7 +363,7 @@ function Band({
   return (
     <section
       id={id}
-      className={`relative scroll-mt-20 px-4 py-8 sm:py-20 ${confetti ? "overflow-hidden" : ""} ${tones[tone]} ${className}`}
+      className={`relative scroll-mt-20 px-4 py-8 sm:py-12 ${confetti ? "overflow-hidden" : ""} ${tones[tone]} ${className}`}
     >
       {confetti && <Confetti />}
       <div className="relative z-10 mx-auto max-w-5xl">{children}</div>
