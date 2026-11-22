@@ -16,7 +16,7 @@ export const Route = createFileRoute("/conferma")({
         <div className="text-6xl">🎉</div>
         <h1 className="mt-3 text-3xl font-extrabold text-primary">Grazie!</h1>
         <p className="mt-2 text-muted-foreground">
-          Questa è una conferma di prova: nessun pagamento è stato effettuato.
+          Il pagamento è andato a buon fine. Riceverai a breve un'email con i tuoi PDF.
         </p>
         <Link to="/" className="btn mt-5 bg-secondary text-secondary-foreground">
           Torna alla home
