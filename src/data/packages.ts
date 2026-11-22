@@ -215,10 +215,6 @@ export const offers: Offer[] = [
       "Tutti e 4 i kit PDF dell'età scelta",
       "2 avventure per la casa + 2 per parco o giardino",
     ],
-    bonus: [
-      "Inviti digitali WhatsApp da personalizzare",
-      "Checklist organizzativa per merenda e giochi extra",
-    ],
     cta: "Sblocca i 4 Kit Età",
   },
   {
@@ -237,7 +233,6 @@ export const offers: Offer[] = [
       "Avventure per la casa e per l'aperto in ogni fascia d'età",
       "Nessuna scelta richiesta: un unico archivio",
     ],
-    bonus: ["Inviti WhatsApp e checklist organizzativa", "Cartelli segnaposto stampabili"],
     cta: "Prendi Tutti i 16 Kit",
   },
 ];

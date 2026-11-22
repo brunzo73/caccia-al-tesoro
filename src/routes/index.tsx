@@ -165,25 +165,11 @@ function Index() {
 
       {/* 3. LA SOLUZIONE IN 3 PASSI */}
       <Band id="come-funziona">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div>
-            <Heading kicker="Come funziona" align="left">
-              Dal download al tesoro in 3 passi
-            </Heading>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Hai già tutto: la storia, le prove, gli indizi e i diplomi. A te resta solo la parte
-              bella.
-            </p>
-          </div>
-          <div className="hidden lg:block">
-            <Photo
-              src={photos.gioia}
-              emoji="🥳"
-              caption="Loro giocano, tu ti godi la festa"
-              tone="light"
-            />
-          </div>
-        </div>
+        <Heading kicker="Come funziona">Dal download al tesoro in 3 passi</Heading>
+        <p className="mx-auto mt-4 max-w-xl text-center text-lg text-muted-foreground">
+          Hai già tutto: la storia, le prove, gli indizi e i diplomi. A te resta solo la parte
+          bella.
+        </p>
         <ol className="mt-8 grid gap-5 md:grid-cols-3">
           {steps.map((s, i) => (
             <li key={s.t} className="card-fun overflow-hidden">
