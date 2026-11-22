@@ -1,4 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   ageGroups,
   euro,
@@ -8,6 +9,7 @@ import {
   packages,
   packagesByAge,
 } from "@/data/packages";
+import { createCheckoutSession } from "@/lib/checkout.functions";
 
 type Search = { offerta?: string | undefined; tema?: string | undefined; eta?: string | undefined };
 
@@ -33,7 +35,8 @@ export const Route = createFileRoute("/ordine")({
 
 function Ordine() {
   const search = Route.useSearch();
-  const navigate = useNavigate();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const offer = getOffer(search.offerta ?? "") ?? offers[1]!;
   const age = ageGroups.find((g) => g.value === search.eta);
   const single = getPackage(search.tema ?? "");
@@ -49,6 +52,29 @@ function Ordine() {
           ? [single]
           : [];
   const incomplete = kits.length === 0;
+
+  const handlePay = async () => {
+    setErrorMessage(null);
+    setIsRedirecting(true);
+    try {
+      const result = await createCheckoutSession({
+        data: {
+          offerta: offer.id,
+          tema: search.tema,
+          eta: search.eta,
+          origin: window.location.origin,
+        },
+      });
+      window.location.href = result.url;
+    } catch (error) {
+      setIsRedirecting(false);
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Pagamento non riuscito. Riprova tra poco.",
+      );
+    }
+  };
 
   return (
     <div className="mx-auto max-w-xl px-4 py-10">
@@ -108,13 +134,16 @@ function Ordine() {
         </Link>
         <button
           type="button"
-          disabled={incomplete}
-          onClick={() => navigate({ to: "/conferma" })}
-          className="btn bg-primary text-primary-foreground"
+          disabled={incomplete || isRedirecting}
+          onClick={handlePay}
+          className="btn bg-primary text-primary-foreground disabled:opacity-60"
         >
-          Paga {euro(offer.price)}
+          {isRedirecting ? "Un attimo…" : `Paga ${euro(offer.price)}`}
         </button>
       </div>
+      {errorMessage && (
+        <p className="mt-3 text-center text-sm font-bold text-destructive">{errorMessage}</p>
+      )}
       <p className="mt-4 text-center text-sm text-muted-foreground">
         Download immediato: ricevi i PDF via email subito dopo il pagamento.
       </p>
