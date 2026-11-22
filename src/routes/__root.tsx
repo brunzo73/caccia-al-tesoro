@@ -151,6 +151,9 @@ function RootComponent() {
             <Link to="/" hash="faq" className="transition-colors hover:text-primary">
               Domande
             </Link>
+            <Link to="/blog" className="transition-colors hover:text-primary">
+              Blog
+            </Link>
           </nav>
           <Link
             to="/"
