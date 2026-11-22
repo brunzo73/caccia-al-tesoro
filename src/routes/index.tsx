@@ -175,14 +175,16 @@ function Index() {
               bella.
             </p>
           </div>
-          <Photo
-            src={photos.gioia}
-            emoji="🥳"
-            caption="Loro giocano, tu ti godi la festa"
-            tone="light"
-          />
+          <div className="hidden lg:block">
+            <Photo
+              src={photos.gioia}
+              emoji="🥳"
+              caption="Loro giocano, tu ti godi la festa"
+              tone="light"
+            />
+          </div>
         </div>
-        <ol className="mt-10 grid gap-5 md:grid-cols-3">
+        <ol className="mt-8 grid gap-5 md:grid-cols-3">
           {steps.map((s, i) => (
             <li key={s.t} className="card-fun overflow-hidden">
               {s.photo ? (
@@ -361,7 +363,7 @@ function Band({
   return (
     <section
       id={id}
-      className={`relative scroll-mt-20 px-4 py-14 sm:py-20 ${confetti ? "overflow-hidden" : ""} ${tones[tone]} ${className}`}
+      className={`relative scroll-mt-20 px-4 py-8 sm:py-20 ${confetti ? "overflow-hidden" : ""} ${tones[tone]} ${className}`}
     >
       {confetti && <Confetti />}
       <div className="relative z-10 mx-auto max-w-5xl">{children}</div>
