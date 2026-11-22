@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getStripe } from "@/lib/stripe.server";
-import { ageGroups, getOffer, getPackage, packages, packagesByAge } from "@/data/packages";
+import { ageGroups, getOffer, resolveKits } from "@/data/packages";
 
 type CheckoutInput = {
   offerta: string;
@@ -40,18 +40,7 @@ export const createCheckoutSession = createServerFn({ method: "POST" })
     }
 
     const age = ageGroups.find((g) => g.value === data.eta);
-    const single = data.tema ? getPackage(data.tema) : undefined;
-
-    const kits =
-      offer.id === "completo"
-        ? packages
-        : offer.id === "eta"
-          ? age
-            ? packagesByAge(age.value)
-            : []
-          : single
-            ? [single]
-            : [];
+    const kits = resolveKits(offer, data.tema, data.eta);
 
     if (kits.length === 0) {
       throw new Error("Manca la scelta dell'età o del tema per questo pacchetto.");

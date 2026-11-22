@@ -15,6 +15,7 @@ import { Route as ContattiRouteImport } from './routes/contatti'
 import { Route as OrdineRouteImport } from './routes/ordine'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TerminiRouteImport } from './routes/termini'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const TerminiRoute = TerminiRouteImport.update({
   path: '/termini',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
+  id: '/api/stripe-webhook',
+  path: '/api/stripe-webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/ordine': typeof OrdineRoute
   '/privacy': typeof PrivacyRoute
   '/termini': typeof TerminiRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/ordine': typeof OrdineRoute
   '/privacy': typeof PrivacyRoute
   '/termini': typeof TerminiRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +79,27 @@ export interface FileRoutesById {
   '/ordine': typeof OrdineRoute
   '/privacy': typeof PrivacyRoute
   '/termini': typeof TerminiRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/conferma' | '/contatti' | '/ordine' | '/privacy' | '/termini'
+    | '/'
+    | '/conferma'
+    | '/contatti'
+    | '/ordine'
+    | '/privacy'
+    | '/termini'
+    | '/api/stripe-webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conferma' | '/contatti' | '/ordine' | '/privacy' | '/termini'
+  to:
+    | '/'
+    | '/conferma'
+    | '/contatti'
+    | '/ordine'
+    | '/privacy'
+    | '/termini'
+    | '/api/stripe-webhook'
   id:
     | '__root__'
     | '/'
@@ -86,6 +108,7 @@ export interface FileRouteTypes {
     | '/ordine'
     | '/privacy'
     | '/termini'
+    | '/api/stripe-webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +118,7 @@ export interface RootRouteChildren {
   OrdineRoute: typeof OrdineRoute
   PrivacyRoute: typeof PrivacyRoute
   TerminiRoute: typeof TerminiRoute
+  ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TerminiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/stripe-webhook': {
+      id: '/api/stripe-webhook'
+      path: '/api/stripe-webhook'
+      fullPath: '/api/stripe-webhook'
+      preLoaderRoute: typeof ApiStripeWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrdineRoute: OrdineRoute,
   PrivacyRoute: PrivacyRoute,
   TerminiRoute: TerminiRoute,
+  ApiStripeWebhookRoute: ApiStripeWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

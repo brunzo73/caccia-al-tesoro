@@ -245,6 +245,21 @@ export const offers: Offer[] = [
 export const getOffer = (id: string) => offers.find((o) => o.id === id);
 export const euro = (n: number) => `${n.toFixed(2).replace(".", ",")} €`;
 
+/**
+ * Resolves which kits a given offer selection corresponds to. Shared between
+ * the checkout-session creation and the Stripe webhook so the two can never
+ * disagree about what was actually purchased.
+ */
+export function resolveKits(offer: Offer, tema: string | undefined, eta: string | undefined) {
+  if (offer.id === "completo") return packages;
+  if (offer.id === "eta") {
+    const age = ageGroups.find((g) => g.value === eta);
+    return age ? packagesByAge(age.value) : [];
+  }
+  const single = tema ? getPackage(tema) : undefined;
+  return single ? [single] : [];
+}
+
 // ── Recensioni ─────────────────────────────────────────────────────────────
 // Inserisci qui SOLO recensioni vere di clienti reali (con il loro consenso).
 // Finché l'elenco è vuoto la sezione non viene mostrata.
