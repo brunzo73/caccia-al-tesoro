@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import heroKit from "@/assets/hero-kit-dinosauri.jpg.asset.json";
 import { Pricing } from "@/components/Pricing";
 import { faqs, photos, reviews } from "@/data/packages";
 
@@ -469,13 +468,29 @@ function Photo({
   );
 }
 
-/** Immagine di apertura del kit Dinosauri in azione. */
+/** Anteprima del kit Dinosauri in azione: copertina, storia, carte-indizio e diploma. */
 function HeroMockup() {
+  const pages = [
+    { src: "/images/kit/dino-copertina.jpg", caption: "Copertina" },
+    { src: "/images/kit/dino-storia.jpg", caption: "Storia a capitoli" },
+    { src: "/images/kit/dino-carte.jpg", caption: "Carte-indizio da stampare" },
+    { src: "/images/kit/dino-diploma.jpg", caption: "Diploma incluso" },
+  ];
   return (
-    <img
-      src={heroKit.url}
-      alt="Il kit Dinosauri in azione: copertina, storia e carte-indizio da stampare, con diploma incluso"
-      className="pop mx-auto aspect-[5/4] w-full max-w-lg rounded-[2rem] object-cover"
-    />
+    <div
+      className="pop mx-auto grid aspect-[5/4] w-full max-w-lg grid-cols-2 gap-2 rounded-[2rem] bg-white/50 p-2"
+      role="img"
+      aria-label="Il kit Dinosauri in azione: copertina, storia e carte-indizio da stampare, con diploma incluso"
+    >
+      {pages.map((page) => (
+        <img
+          key={page.src}
+          src={page.src}
+          alt={page.caption}
+          loading="lazy"
+          className="h-full w-full rounded-2xl object-cover object-top"
+        />
+      ))}
+    </div>
   );
 }
